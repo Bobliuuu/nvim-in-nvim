@@ -1,0 +1,5 @@
+Hello from Editor A.
+This text is edited by a Lua editor,
+running inside Neovim.
+
+Try: <Space>n  to spawn a nested editor.
