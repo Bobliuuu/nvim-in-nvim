@@ -36,7 +36,7 @@ function M.geometry(ed)
   end
   local g = p.geom
   -- child box sits inside the parent's box, just below the parent's winbar, so every level stays visible
-  return { r = g.r + 2, c = g.c + 2, w = math.max(g.w - 4, 24), h = math.max(g.h - 3, 8) }
+  return { r = g.r + 2, c = g.c + 3, w = math.max(g.w - 6, 24), h = math.max(g.h - 4, 8) }
 end
 
 local function win_cfg(ed)

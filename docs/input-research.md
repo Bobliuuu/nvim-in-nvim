@@ -48,3 +48,15 @@ buffer edits only through `nvim_buf_set_text` / `nvim_buf_set_lines`. `experimen
 
 ## Decision
 One global `vim.on_key` hook (+ `vim.paste` override) = the single physical input layer. It forwards every key to the focused logical editor.
+
+## Addendum: things found while building the real runtime
+8. **`key` vs `typed` matters.** `on_key(key, typed)` reports `key` *after mappings*. With stock Neovim defaults loaded, pressing `X` reaches
+   `key` as `dh` and `Y` as `y$`. We read `typed` first and fall back to `key`.
+9. **Neovim 0.12 ships 47 default mappings** (`nvim --clean` with `nvim_get_keymap("n")`), several of them Lua functions (`gc`, `gcc`, ...), i.e.
+   exactly the trigger for issue #36480. `input.install()` deletes every host mapping at startup; a test asserts the host has none.
+10. **`nvim_feedkeys(keys, "tx", false)` goes through `on_key`**, so Lua specs can exercise the real input pipeline in-process.
+    `nvim_input()` does *not* get processed inside `nvim -l` (no main loop), hence the separate pty test.
+11. **Passthrough still edits our buffers.** With `<C-\><C-\>` the hook steps aside and native Vim edits the focused editor's scratch buffer.
+    That is the intended escape hatch (you can rescue text with real Vim), not a bug.
+12. **Race in pty tests.** Bytes written to the pty and an RPC query to `--listen` take different paths into the server. The driver waits for
+    the *screen to stop changing* after each send; before that, ~1 run in 5 read stale state.
