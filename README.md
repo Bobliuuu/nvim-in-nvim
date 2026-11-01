@@ -1,0 +1,201 @@
+<div align="center">
+
+# nvim-in-nvim
+
+### Neovim inside Neovim inside Neovim inside Neovim.
+
+*A Vim-like editor written in ~1,900 lines of Lua, running **on top of** Neovim using nothing but its public API,
+with its own `init.lua` configuration system, so the editor can edit the config of another editor that is itself an editor.*
+
+![Neovim 0.12](https://img.shields.io/badge/neovim-0.12.6-7aa2f7?style=flat-square&logo=neovim&logoColor=white)
+![Lua](https://img.shields.io/badge/lua-only-bb9af7?style=flat-square&logo=lua&logoColor=white)
+![plugins](https://img.shields.io/badge/third--party%20plugins-0-9ece6a?style=flat-square)
+![processes](https://img.shields.io/badge/extra%20nvim%20processes-0-e0af68?style=flat-square)
+![tests](https://img.shields.io/badge/tests-59%20lua%20%C2%B7%2049%20e2e%20%C2%B7%2022%20research-f7768e?style=flat-square)
+
+<img src="docs/img/nested.svg" alt="Four nested editors A→B→C→D in a single Neovim process" width="860">
+
+<sub>Real screen capture of <code>nvim -u ./init.lua</code> after pressing <code>&lt;Space&gt;n</code> three times. One OS process. Four logical editors. Four different <code>init.lua</code> files.</sub>
+
+</div>
+
+---
+
+## The idea
+
+```text
+REAL NEOVIM  ── loads our init.lua
+└── EDITOR A   (Lua)   configs/a/init.lua   number on,  Q → "Editor A"
+    └── EDITOR B   (Lua)   configs/b/init.lua   number off, Q → "Editor B"
+        └── EDITOR C   (Lua)   configs/c/init.lua   number on,  Q → "Editor C"
+            └── EDITOR D   (Lua)   configs/d/init.lua   relative numbers …
+```
+
+The editors are **not** Neovim processes and not copies of your Neovim config. Each one is a *logical* editor implemented in Lua, with its own
+modes, cursor, registers, undo history, buffers, key mappings, options, user commands, and **its own Lua environment in which `vim` means "this editor"**.
+
+The punchline (this is the acceptance test, and it runs automatically against a real terminal with raw bytes):
+
+> **Editor B opens `configs/c/init.lua`, changes `"Editor C"` to `"Editor C was reconfigured"` using our own `/`, `i` and `:w`,
+> then Editor C reloads and its `Q` mapping now says `Editor C was reconfigured`.**
+> An editor built from Neovim configuration edited the configuration of another editor built from Neovim configuration.
+
+<div align="center">
+<img src="docs/img/reconfigure.svg" alt="Editor B editing and saving Editor C's init.lua" width="860">
+<br><sub>Editor B, mid-story: C's config edited with B's own Lua-implemented editing commands and saved with B's own <code>:w</code>.</sub>
+</div>
+
+## Try it
+
+```bash
+brew install neovim            # needs 0.10+ (float footers); developed on 0.12.6
+git clone https://github.com/Bobliuuu/nvim-in-nvim && cd nvim-in-nvim
+nvim -u ./init.lua             # the real Neovim loads our init.lua, which boots Editor A
+```
+
+### 60-second tour
+
+| keys | what happens |
+|---|---|
+| `Q` | Editor A's own mapping: footer says `Editor A` |
+| `<Space>n` | A's mapping spawns **Editor B** (new buffer, new config, `number` off) |
+| `Q` | now B's mapping: `Editor B` |
+| `<Space>n` | B spawns **C**, `X` in C inserts `hello from level 3`, `<Space>n` again spawns **D** |
+| `:parent` / `:child` | move focus up/down the tree (children are hidden when you're above them) |
+| in B: `:e! configs/c/init.lua` | open C's config, edit it with our `/`, `a`, `ciw`, `dd`…, save with `:w` |
+| `:child` then `:reload` then `Q` | C re-executes the saved file → `Editor C was reconfigured` |
+| `:close` | close this editor (and its subtree), focus returns to the parent |
+| `:q!` in A | quit the real Neovim |
+| `<C-c><C-c><C-c>` | emergency: reset this editor's logical state |
+| `<C-\><C-\>` | emergency: step aside, native Neovim takes over (press again to come back) |
+
+## What the editor can do
+
+<table>
+<tr><td>
+
+**Modes** normal · insert · command-line · visual (`v` `V`)<br>
+**Motions** `h j k l w b e 0 ^ $ gg G n N` `/search`<br>
+**Operators** `d c y` (composable, not hardcoded)<br>
+**Text objects** `iw aw`<br>
+**Counts** `5j` `3w` `2dd` `d2w` `2d3w`<br>
+**Insert** `i a I A o O` `<CR>` `<BS>` `<Tab>` arrows<br>
+**Editing** `x X D C s S Y J r p P` `"ayy` registers<br>
+**Undo/redo** `u` `<C-r>` · **dot-repeat** `.`
+
+</td><td>
+
+**Ex** `:w :q :wq :e[!] :set :source :lua :Cmd`<br>
+**Nesting** `:spawn :parent :child :close :reload`<br>
+**Buffers** `:ls :bnext :bprev`<br>
+**UI** line numbers, cursorline, statusline-ish winbar, treesitter highlighting for `.lua`, nested colored frames<br>
+**Real files** open, edit, save<br>
+**Config** per-instance, hot-reloadable
+
+</td></tr>
+</table>
+
+`d` is an operator and `w` is a motion; the parser glues them, so `dw`, `d$`, `c2w`, `yj`, `dG`… all exist without being enumerated.
+Even `x` is just `dl`, and `D` is `d$`.
+
+## Configuring an editor (it looks like configuring Neovim)
+
+```lua
+-- configs/a/init.lua  (executed by Editor A, in Editor A's private environment)
+vim.g.mapleader = " "
+vim.opt.number = true
+vim.opt.tabstop = 4
+
+vim.keymap.set("n", "Q", function() vim.editor.echo("Editor A") end)
+vim.keymap.set("n", "<leader>n", function() vim.editor.spawn({ config = "configs/b/init.lua" }) end)
+
+vim.api.nvim_create_user_command("Hello", function()
+  vim.editor.echo("Hello from nested Neovim! (depth " .. vim.editor.depth() .. ")")
+end, {})
+```
+
+`vim` here is a **virtual** object created per editor. The host's `vim` is not in the config's environment at all.
+
+| area | API |
+|---|---|
+| options | `vim.opt` / `vim.o`: `number relativenumber cursorline wrap tabstop expandtab` |
+| globals | `vim.g.mapleader` |
+| mappings | `vim.keymap.set/del(mode, lhs, rhs\|fn)` for `n` `i` `v`, `<leader>`, multi-key, pending prefix with timeout |
+| commands | `vim.api.nvim_create_user_command`, `vim.cmd("…")` |
+| events | `vim.api.nvim_create_autocmd` for `ModeChanged BufWritePost ConfigLoaded EditorSpawn` |
+| editor | `vim.editor.echo spawn insert_text move_* motion feed exec edit save reload_config focus_parent close depth …` |
+| modules | `require("x")` resolves next to the config file |
+
+**Reload is transactional**: the file runs against a *staging* scope; only if it finishes without error does it replace the editor's mappings,
+commands and options in one swap. A broken config reports its error *in that editor*, keeps the previous working config, and never touches its
+parent. Options that the new file no longer sets revert to defaults, and old mappings can't be duplicated by construction.
+
+## How it works
+
+```text
+terminal bytes ─► Neovim ─► vim.on_key(…) returns ""      native editing never sees the key
+                                │
+                          input.lua  (the ONLY global hook, + vim.paste override)
+                                │ focused editor
+                                ▼
+                      Editor ─ mapping layer ─ modes ─┬─ motions   (pure: ctx,pos,count → pos)
+                                                      └─ operators (range → buffer edit)
+                                │
+        buffer.lua (owned, guarded) · config.lua (private env) · render.lua (float + options)
+```
+
+* **One physical input layer.** `vim.on_key` swallows every key; a router hands it to whichever logical editor has focus. Nested editors never install hooks.
+* **Buffers are real Neovim scratch buffers but logically owned.** Every mutation names the editor performing it; a different editor gets an error.
+* **Options are display-adapted per instance** (`number` becomes a *window-local* option of that editor's own float), never a global host setting.
+* **Depth is data.** `spawn` is just the constructor with a parent. There are no `if depth == 3` branches; the tests spawn eight levels.
+
+More: [`docs/architecture.md`](docs/architecture.md) · [`docs/input-research.md`](docs/input-research.md) · [`docs/discoveries.md`](docs/discoveries.md)
+
+## Phase 0: could this even work?
+
+Before writing the editor, the input approach was tested in a real pty (`experiments/`, 22 assertions). Findings worth knowing if you try this yourself:
+
+* `vim.on_key()` returning `""` **does** reliably discard keys (incl. `i`, `x`, `dd`, `:`, `ZZ`, Ctrl combos, F-keys, 500-char bursts, Unicode).
+* …**but a callback that throws is silently unregistered**, handing the editor back to native Vim. Everything is `pcall`'d.
+* **Paste bypasses `on_key`** (`nvim_paste → vim.paste`), so pasting `dd` in Normal mode really deleted a line natively until `vim.paste` was overridden.
+* The host cursor **clamps in Normal mode**, so "insert at end of line" typed text *backwards* until `virtualedit=onemore`.
+* **`key` is post-mapping**: stock Neovim turns `X` into `dh` and `Y` into `y$` before your hook sees them (use `typed`), and ships 47 default mappings
+  (some are Lua functions: the trigger for upstream [#36480](https://github.com/neovim/neovim/issues/36480)). We delete them all at startup.
+
+## Tests
+
+```bash
+tests/run.sh
+```
+
+| layer | what | how |
+|---|---|---|
+| unit | motions, keys, registers | headless `nvim -l`, pure tables |
+| integration | editing, counts, undo, dot, visual, `:` commands, config, reload, isolation, ownership, focus, cleanup, recursion to depth 8 | headless nvim with real buffers/windows; `input_spec` uses `nvim_feedkeys(…,"tx")` through the **real** `on_key` |
+| end-to-end | the full A→B→C→edit→save→reload→isolate→D story + unicode, paste, escape sequences, 600-char bursts, no native leaks, "no new OS processes", `:q` exits | real `nvim -u ./init.lua` TUI in a pseudo-terminal, raw bytes, `pyte` virtual screen |
+
+(`pip install pyte` is only needed for the dev-time pty tests. The editor itself has no dependencies.)
+
+## Honest limitations
+
+* Configs are **trusted code**. A private Lua environment isolates *names and state*, not capabilities (`os`/`io` are available).
+* Not Vim: no regex search, folds, marks, macros, `:s`/`:g`, jump list, completion, mouse. Undo is linear whole-buffer snapshots.
+* Insert counts (`3ix<Esc>`) are not implemented.
+* A pending mapping prefix (like `<Space>` with `<leader>n`) waits `timeoutlen` (800 ms) before falling back to the builtin.
+* There is one physical terminal, so cursor shape is global; it tracks the focused editor.
+* If the hook ever wedges: `<C-\><C-\>`. (It runs inside the hook but ahead of all dispatch, so a broken editor can't block it.)
+
+## Layout
+
+```text
+init.lua                 nvim -u ./init.lua  → boots Editor A
+lua/recursive_vim/       the editor: input · instances · editor · modes · motions · operators ·
+                         registers · buffer · commands · config · render · text · keys
+configs/{a,b,c,d}/       the per-level init.lua files used by the demo/tests
+tests/                   lua specs + pty end-to-end + run.sh
+experiments/             Phase-0 input interception research (reproducible)
+tools/                   makes the README screenshots from a real pty session
+docs/                    architecture · input-research · discoveries
+```
+
+<div align="center"><sub>Built as an educational systems-programming project: <i>can Neovim's config system express a smaller Neovim that has a config system?</i> Yes.</sub></div>

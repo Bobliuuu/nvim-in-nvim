@@ -44,12 +44,12 @@ Three independent mechanisms make "config inside config" work:
 ## Why recursion is possible
 The editor never refers to "the host": it talks to a few primitives (buffer, float, key). A child editor needs the same primitives, which the host
 happily provides again, plus a *parent pointer* and focus routing. The config API exposes `spawn`, and `spawn` is the same constructor. Depth 8 works
-exactly like depth 2; the tests spawn eight.
+exactly like depth 2; `recursion_spec` spawns eight levels.
 
 ## Leaky abstractions
 * **Global cursor shape** (`guicursor`) and **global key delivery** are properties of the single real terminal; they can't be per-instance.
 * **Window-local options follow the window**, not the buffer. Switching buffers in a float needs us to re-apply our options.
-* A **float's `row/col` includes its border**, and hidden floats still own their z-order.
+* A **float's `row/col` is its outer corner (border included)**; our nested geometry is computed in outer boxes.
 * The TUI is **two OS processes** (client + embedded server). "No extra processes for nesting" has to be asserted as "same descendants as at boot".
 * `nvim_buf_set_lines(0, -1, {})` on a buffer leaves one empty line; Vim's "buffer is never empty" invariant leaks through the API.
 * Highlight groups are global; we namespace ours with an `Rv` prefix.
@@ -57,7 +57,7 @@ exactly like depth 2; the tests spawn eight.
 ## What cannot reasonably be recreated with public APIs alone
 * **Pending-key timeouts** need our own timer (`timeoutlen`); there is no hook into Neovim's.
 * **Regex search**, folds, marks, macros (`q`), `:g`/`:s`, the jump list, completion, `:help`, and Vimscript are not implemented; we'd be rewriting Vim.
-* **Real IME / composing input and mouse** don't arrive as plain keys; we turn the mouse off.
+* **Mouse** events are not handled (`mouse=""`); IME/composition input was not investigated.
 * **Per-instance cursor style / true separate terminals**: there is one terminal.
 * **A hard sandbox** for configs: Lua environments isolate *names*, not capabilities.
 * **Native undo tree, `:earlier`, persistent undo**: we only keep linear snapshot stacks.
