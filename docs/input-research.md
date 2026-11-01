@@ -36,8 +36,10 @@ buffer edits only through `nvim_buf_set_text` / `nvim_buf_set_lines`. `experimen
 5. **Key representation.** `on_key(key, typed)`: use `typed` when non-empty (pre-mapping), `vim.fn.keytrans()` to normalise to `<Esc>`, `<BS>`, `<C-r>`.
    The host has no mappings, so `key` is enough; `typed` is a fallback.
 6. **Emergency escape must be inside the hook** (a mapping is dead if the hook is wedged). `<C-\><C-\>` is handled before dispatch, can't be remapped.
-7. Issue [#36480](https://github.com/neovim/neovim/issues/36480) was not reachable from the dev sandbox; we did not rely on any behaviour it might
-   describe. Everything above is empirically observed on 0.12.6, not assumed.
+7. **Upstream issue [#36480](https://github.com/neovim/neovim/issues/36480):** when `on_key` swallows a key that *also* has a Lua-function
+   mapping, stray numbers/newlines get inserted. Not reproduced by us; avoided **by design**: the host registers zero mappings.
+   All user-level mappings live in our own per-editor tables and are resolved by our dispatcher, never by Neovim. (Constraint: do not add
+   host `vim.keymap.set` anywhere in the runtime.)
 
 ## Alternatives considered
 - **Buffer-local mappings:** need to map every key incl. all printable Unicode, no catch-all, typed-ahead ordering subtle. Rejected.

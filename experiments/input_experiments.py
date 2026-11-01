@@ -36,7 +36,7 @@ n.send("i"); n.send("\x1b[200~pasted text\x1b[201~")
 check("12 bracketed paste in logical insert", "pasted text" in n.lines()[0], str(n.lines()))
 n.send("\x1b")
 n.send("\x1b[200~dd\nxx\x1b[201~")
-check("12b paste in logical normal mode does not leak natively", n.lines()==["pasted text"], str(n.lines()))
+check("12b paste in logical normal mode does not leak natively", n.lines()==[""], str(n.lines()))  # pasted "dd" ran OUR dd, like typed keys
 n.close()
 
 n = fresh()
