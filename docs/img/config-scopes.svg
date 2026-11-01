@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" width="980" height="560" font-family="ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14"><title>Per-editor configuration scopes and transactional reload</title><defs><marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/></marker><marker id="a-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#bb9af7"/></marker><marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9ece6a"/></marker><marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0af68"/></marker><marker id="a-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f7768e"/></marker><marker id="a-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7dcfff"/></marker><marker id="a-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7982a9"/></marker></defs><rect width="100%" height="100%" rx="12" fill="#1a1b26"/>
+<text x="490" y="32" fill="#c0caf5" font-size="15" text-anchor="middle" font-weight="700">Why configs can&#x27;t contaminate each other</text>
+<rect x="20" y="56" width="300" height="100" rx="9" fill="#24283b" stroke="#7aa2f7" stroke-width="1.6"/>
+<text x="34" y="80" fill="#7aa2f7" font-weight="700" font-size="14.5">configs/a/init.lua</text>
+<text x="34" y="102" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">number = true</text>
+<text x="34" y="121" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">Q → &quot;Editor A&quot;</text>
+<text x="34" y="140" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">&lt;leader&gt;n → spawn B</text>
+<line x1="170" y1="156" x2="170" y2="186" stroke="#7aa2f7" stroke-width="1.8" marker-end="url(#a-blue)"/>
+<text x="180" y="176" fill="#7aa2f7" font-size="12" text-anchor="start" font-weight="400">load(src, name, &quot;t&quot;, env)</text>
+<rect x="20" y="190" width="300" height="138" rx="9" fill="#24283b" stroke="#7aa2f7" stroke-width="1.6"/>
+<text x="34" y="214" fill="#7aa2f7" font-weight="700" font-size="14.5">env A  (private Lua environment)</text>
+<text x="34" y="236" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">vim  = virtual vim → scope A</text>
+<text x="34" y="255" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">string, table, math, pcall …</text>
+<text x="34" y="274" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">NOT in env: host `vim`, package,</text>
+<text x="34" y="293" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">debug, dofile, vim.fn, vim.uv</text>
+<line x1="170" y1="328" x2="170" y2="358" stroke="#7aa2f7" stroke-width="1.8" marker-end="url(#a-blue)"/>
+<rect x="20" y="362" width="300" height="100" rx="9" fill="#24283b" stroke="#7aa2f7" stroke-width="1.6"/>
+<text x="34" y="386" fill="#7aa2f7" font-weight="700" font-size="14.5">scope A</text>
+<text x="34" y="408" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">opt · g · maps · cmds · autocmds</text>
+<text x="170" y="482" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">→ float window A: window-local</text>
+<text x="170" y="500" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">options (number, tabstop, …)</text>
+<rect x="340" y="56" width="300" height="100" rx="9" fill="#24283b" stroke="#bb9af7" stroke-width="1.6"/>
+<text x="354" y="80" fill="#bb9af7" font-weight="700" font-size="14.5">configs/b/init.lua</text>
+<text x="354" y="102" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">number = false</text>
+<text x="354" y="121" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">Q → &quot;Editor B&quot;</text>
+<text x="354" y="140" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">&lt;leader&gt;n → spawn C</text>
+<line x1="490" y1="156" x2="490" y2="186" stroke="#bb9af7" stroke-width="1.8" marker-end="url(#a-purple)"/>
+<text x="500" y="176" fill="#bb9af7" font-size="12" text-anchor="start" font-weight="400">load(src, name, &quot;t&quot;, env)</text>
+<rect x="340" y="190" width="300" height="138" rx="9" fill="#24283b" stroke="#bb9af7" stroke-width="1.6"/>
+<text x="354" y="214" fill="#bb9af7" font-weight="700" font-size="14.5">env B  (private Lua environment)</text>
+<text x="354" y="236" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">vim  = virtual vim → scope B</text>
+<text x="354" y="255" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">string, table, math, pcall …</text>
+<text x="354" y="274" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">NOT in env: host `vim`, package,</text>
+<text x="354" y="293" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">debug, dofile, vim.fn, vim.uv</text>
+<line x1="490" y1="328" x2="490" y2="358" stroke="#bb9af7" stroke-width="1.8" marker-end="url(#a-purple)"/>
+<rect x="340" y="362" width="300" height="100" rx="9" fill="#24283b" stroke="#bb9af7" stroke-width="1.6"/>
+<text x="354" y="386" fill="#bb9af7" font-weight="700" font-size="14.5">scope B</text>
+<text x="354" y="408" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">opt · g · maps · cmds · autocmds</text>
+<text x="490" y="482" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">→ float window B: window-local</text>
+<text x="490" y="500" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">options (number, tabstop, …)</text>
+<rect x="660" y="56" width="300" height="100" rx="9" fill="#24283b" stroke="#9ece6a" stroke-width="1.6"/>
+<text x="674" y="80" fill="#9ece6a" font-weight="700" font-size="14.5">configs/c/init.lua</text>
+<text x="674" y="102" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">number = true</text>
+<text x="674" y="121" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">Q → &quot;Editor C&quot;</text>
+<text x="674" y="140" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">X → insert_text(…)</text>
+<line x1="810" y1="156" x2="810" y2="186" stroke="#9ece6a" stroke-width="1.8" marker-end="url(#a-green)"/>
+<text x="820" y="176" fill="#9ece6a" font-size="12" text-anchor="start" font-weight="400">load(src, name, &quot;t&quot;, env)</text>
+<rect x="660" y="190" width="300" height="138" rx="9" fill="#24283b" stroke="#9ece6a" stroke-width="1.6"/>
+<text x="674" y="214" fill="#9ece6a" font-weight="700" font-size="14.5">env C  (private Lua environment)</text>
+<text x="674" y="236" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">vim  = virtual vim → scope C</text>
+<text x="674" y="255" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">string, table, math, pcall …</text>
+<text x="674" y="274" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">NOT in env: host `vim`, package,</text>
+<text x="674" y="293" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">debug, dofile, vim.fn, vim.uv</text>
+<line x1="810" y1="328" x2="810" y2="358" stroke="#9ece6a" stroke-width="1.8" marker-end="url(#a-green)"/>
+<rect x="660" y="362" width="300" height="100" rx="9" fill="#24283b" stroke="#9ece6a" stroke-width="1.6"/>
+<text x="674" y="386" fill="#9ece6a" font-weight="700" font-size="14.5">scope C</text>
+<text x="674" y="408" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">opt · g · maps · cmds · autocmds</text>
+<text x="810" y="482" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">→ float window C: window-local</text>
+<text x="810" y="500" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">options (number, tabstop, …)</text>
+<rect x="20" y="516" width="940" height="36" rx="9" fill="#24283b" stroke="#e0af68" stroke-width="1.6"/>
+<text x="34" y="540" fill="#e0af68" font-weight="700" font-size="14.5">Reload  =  run file against a STAGING scope → commit only on success → old scope kept on error</text>
+</svg>

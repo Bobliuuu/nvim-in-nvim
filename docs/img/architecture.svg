@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 700" width="980" height="700" font-family="ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14"><title>Architecture of nvim-in-nvim</title><defs><marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/></marker><marker id="a-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#bb9af7"/></marker><marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9ece6a"/></marker><marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0af68"/></marker><marker id="a-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f7768e"/></marker><marker id="a-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7dcfff"/></marker><marker id="a-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7982a9"/></marker></defs><rect width="100%" height="100%" rx="12" fill="#1a1b26"/>
+<text x="490" y="34" fill="#c0caf5" font-size="15" text-anchor="middle" font-weight="700">One real Neovim process. Everything inside the dashed box is Lua we wrote.</text>
+<rect x="20" y="56" width="940" height="624" rx="9" fill="none" stroke="#7982a9" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="34" y="80" fill="#7982a9" font-weight="700" font-size="14.5">REAL NEOVIM (public API only)</text>
+<rect x="40" y="92" width="280" height="74" rx="9" fill="#24283b" stroke="#7dcfff" stroke-width="1.6"/>
+<text x="54" y="116" fill="#7dcfff" font-weight="700" font-size="14.5">Terminal</text>
+<text x="54" y="138" fill="#c0caf5" font-size="13">bytes → keys (xterm, UTF-8, paste)</text>
+<rect x="360" y="92" width="580" height="74" rx="9" fill="#24283b" stroke="#f7768e" stroke-width="1.6"/>
+<text x="374" y="116" fill="#f7768e" font-weight="700" font-size="14.5">input.lua  ·  the ONLY physical input layer</text>
+<text x="374" y="138" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">vim.on_key → returns &quot;&quot; (native editing never sees the key)</text>
+<text x="374" y="157" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">vim.paste override · emergency &lt;C-\&gt;&lt;C-\&gt; and &lt;C-c&gt;x3</text>
+<line x1="320" y1="129" x2="360" y2="129" stroke="#7dcfff" stroke-width="1.8" marker-end="url(#a-cyan)"/>
+<rect x="40" y="196" width="900" height="66" rx="9" fill="#24283b" stroke="#e0af68" stroke-width="1.6"/>
+<text x="54" y="220" fill="#e0af68" font-weight="700" font-size="14.5">instances.lua  ·  registry + focus</text>
+<text x="54" y="242" fill="#c0caf5" font-size="13">Instances.focused → one pointer. Shows ancestors, hides the rest. close(subtree) restores the parent.</text>
+<line x1="650" y1="166" x2="650" y2="196" stroke="#f7768e" stroke-width="1.8" marker-end="url(#a-red)"/>
+<text x="662" y="186" fill="#f7768e" font-size="12" text-anchor="start" font-weight="400">dispatch(key)</text>
+<rect x="40" y="292" width="280" height="178" rx="9" fill="#24283b" stroke="#7aa2f7" stroke-width="1.6"/>
+<text x="54" y="316" fill="#7aa2f7" font-weight="700" font-size="14.5">Editor A  (depth 0)</text>
+<text x="54" y="338" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">mode · cursor · pending keys</text>
+<text x="54" y="357" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">registers · undo stacks</text>
+<text x="54" y="376" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">buffers   (owned, guarded)</text>
+<text x="54" y="395" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">scope: opts · maps · cmds · events</text>
+<text x="54" y="414" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">private Lua env + virtual `vim`</text>
+<text x="54" y="433" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">float window · parent · children</text>
+<rect x="350" y="292" width="280" height="178" rx="9" fill="#24283b" stroke="#bb9af7" stroke-width="1.6"/>
+<text x="364" y="316" fill="#bb9af7" font-weight="700" font-size="14.5">Editor B  (depth 1)</text>
+<text x="364" y="338" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">mode · cursor · pending keys</text>
+<text x="364" y="357" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">registers · undo stacks</text>
+<text x="364" y="376" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">buffers   (owned, guarded)</text>
+<text x="364" y="395" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">scope: opts · maps · cmds · events</text>
+<text x="364" y="414" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">private Lua env + virtual `vim`</text>
+<text x="364" y="433" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">float window · parent · children</text>
+<rect x="660" y="292" width="280" height="178" rx="9" fill="#24283b" stroke="#9ece6a" stroke-width="1.6"/>
+<text x="674" y="316" fill="#9ece6a" font-weight="700" font-size="14.5">Editor C …  (depth 2…)</text>
+<text x="674" y="338" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">mode · cursor · pending keys</text>
+<text x="674" y="357" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">registers · undo stacks</text>
+<text x="674" y="376" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">buffers   (owned, guarded)</text>
+<text x="674" y="395" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">scope: opts · maps · cmds · events</text>
+<text x="674" y="414" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">private Lua env + virtual `vim`</text>
+<text x="674" y="433" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">float window · parent · children</text>
+<line x1="180" y1="262" x2="180" y2="292" stroke="#e0af68" stroke-width="1.8" marker-end="url(#a-orange)"/>
+<line x1="490" y1="262" x2="490" y2="292" stroke="#e0af68" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-orange)"/>
+<line x1="800" y1="262" x2="800" y2="292" stroke="#e0af68" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-orange)"/>
+<line x1="320" y1="400" x2="350" y2="400" stroke="#bb9af7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-purple)"/>
+<text x="322" y="392" fill="#bb9af7" font-size="12" text-anchor="start" font-weight="400">spawn</text>
+<line x1="630" y1="400" x2="660" y2="400" stroke="#9ece6a" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-green)"/>
+<text x="632" y="392" fill="#9ece6a" font-size="12" text-anchor="start" font-weight="400">spawn</text>
+<text x="490" y="494" fill="#7982a9" font-size="12.5" text-anchor="middle" font-weight="400">Every editor is built by the same Editor.new(); spawn = new(parent = self). No depth branches.</text>
+<rect x="40" y="530" width="440" height="124" rx="9" fill="#24283b" stroke="#7aa2f7" stroke-width="1.6"/>
+<text x="54" y="554" fill="#7aa2f7" font-weight="700" font-size="14.5">Editing engine (shared code, per-editor state)</text>
+<text x="54" y="576" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">modes.lua      normal/insert/cmdline/visual parser</text>
+<text x="54" y="595" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">motions.lua    pure: (ctx,pos,count) → pos, kind</text>
+<text x="54" y="614" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">operators.lua  range → edit   (d c y)</text>
+<text x="54" y="633" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">commands.lua   :w :q :e :set :source :lua :spawn</text>
+<rect x="500" y="530" width="440" height="124" rx="9" fill="#24283b" stroke="#9ece6a" stroke-width="1.6"/>
+<text x="514" y="554" fill="#9ece6a" font-weight="700" font-size="14.5">Host adapters</text>
+<text x="514" y="576" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">buffer.lua   owned scratch buffers, undo snapshots</text>
+<text x="514" y="595" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">config.lua   load(src,…,env), scopes, virtual vim</text>
+<text x="514" y="614" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">render.lua   float, winbar, footer, per-window opts</text>
+<text x="514" y="633" fill="#c0caf5" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5">nvim_buf_set_text / nvim_open_win / set_option_value</text>
+<line x1="180" y1="470" x2="180" y2="530" stroke="#7aa2f7" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-blue)"/>
+<line x1="800" y1="470" x2="800" y2="530" stroke="#9ece6a" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-green)"/>
+</svg>

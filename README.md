@@ -132,17 +132,66 @@ parent. Options that the new file no longer sets revert to defaults, and old map
 
 ## How it works
 
-```text
-terminal bytes ─► Neovim ─► vim.on_key(…) returns ""      native editing never sees the key
-                                │
-                          input.lua  (the ONLY global hook, + vim.paste override)
-                                │ focused editor
-                                ▼
-                      Editor ─ mapping layer ─ modes ─┬─ motions   (pure: ctx,pos,count → pos)
-                                                      └─ operators (range → buffer edit)
-                                │
-        buffer.lua (owned, guarded) · config.lua (private env) · render.lua (float + options)
-```
+<div align="center">
+<img src="docs/img/architecture.svg" alt="Architecture diagram" width="900">
+</div>
+
+Neovim gives us three primitives: **a key arriving**, **a buffer**, and **a float window**. The runtime builds a complete modal editor from just those, and
+because a child editor needs exactly the same three primitives, an editor can host another editor.
+
+1. **Stealing the keyboard.** `input.lua` registers the only `vim.on_key` hook in the whole program. It returns `""` for every key, so Neovim's own
+   Normal/Insert/`:` machinery never runs. It also overrides `vim.paste` (paste bypasses `on_key`) and reserves two emergency sequences.
+2. **Routing.** The key goes to `Instances.focused`, one pointer. Focus moves on `spawn`, `:parent`, `:child`, `:close`.
+3. **Per-editor state.** Mode, cursor, registers, undo, buffers, mappings, options and children all hang off the `Editor` object. Nothing is shared except
+   the *code* (motions, operators, parser).
+4. **Rendering.** `render.lua` is the only file that touches host windows. Each editor is a float; its options are *window-local* options of that float.
+
+### A keypress is a pipeline, and `dw` is two independent parts
+
+<div align="center">
+<img src="docs/img/keypress-flow.svg" alt="Life of a keypress" width="900">
+</div>
+
+Operators and motions know nothing about each other. The parser produces a **range** from the motion and gives it to the operator, so adding one new
+motion instantly gives you `d`, `c`, `y` and visual-mode support for it.
+
+### Why configs can't contaminate each other
+
+<div align="center">
+<img src="docs/img/config-scopes.svg" alt="Per-editor config scopes" width="900">
+</div>
+
+Each config is compiled with `load(src, name, "t", env)` where `env` holds a whitelist of Lua libraries and **that editor's** virtual `vim`.
+What a config defines lands in a **scope** owned by one editor, and options are applied to that editor's window only.
+
+### Reload is a transaction
+
+<div align="center">
+<img src="docs/img/reload-transaction.svg" alt="Config reload transaction" width="900">
+</div>
+
+## Gallery (real screen captures, rendered from a pty running the actual editor)
+
+<table>
+<tr>
+<td width="50%"><img src="docs/img/editor-a.svg" alt="Editor A"><br><sub><b>Editor A</b>: numbers on, config A's mappings, own winbar.</sub></td>
+<td width="50%"><img src="docs/img/visual.svg" alt="Visual mode"><br><sub><b>Visual mode</b> drawn by extmarks; the host is still in Normal mode.</sub></td>
+</tr>
+<tr>
+<td><img src="docs/img/insert.svg" alt="Insert mode"><br><sub><b>Insert mode</b> is a flag in our state machine (green bar, bar cursor).</sub></td>
+<td><img src="docs/img/cmdline.svg" alt="Command line"><br><sub><b>Command-line mode</b>: footer shows the <code>:</code> line as you type.</sub></td>
+</tr>
+<tr>
+<td><img src="docs/img/error.svg" alt="Error reporting"><br><sub><b>Errors</b> are reported inside the editor that caused them.</sub></td>
+<td><img src="docs/img/broken-config.svg" alt="Broken child config"><br><sub><b>Broken child config</b>: B shows the Lua error, still usable.</sub></td>
+</tr>
+<tr>
+<td><img src="docs/img/broken-config-parent.svg" alt="Parent unaffected"><br><sub>…and <b>A is untouched</b>: its own <code>Q</code> still works.</sub></td>
+<td><img src="docs/img/reconfigure.svg" alt="Reconfigure"><br><sub><b>B edits C's init.lua</b> and saves it with its own <code>:w</code>.</sub></td>
+</tr>
+</table>
+
+Regenerate everything with `python3 tools/make_diagrams.py && python3 tools/make_screenshots.py` (needs `pip install pyte`).
 
 * **One physical input layer.** `vim.on_key` swallows every key; a router hands it to whichever logical editor has focus. Nested editors never install hooks.
 * **Buffers are real Neovim scratch buffers but logically owned.** Every mutation names the editor performing it; a different editor gets an error.

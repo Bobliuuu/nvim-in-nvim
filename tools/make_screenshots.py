@@ -72,7 +72,45 @@ def save(nv, name, title):
     print("wrote", name)
 
 
+def modes_shots():
+    """Insert / visual / command-line / error screenshots of a single editor."""
+    nv, proj = boot()
+    try:
+        nv.keys(":set cursorline<CR>")
+        nv.keys("jjA<CR>- inserted with our own Insert mode<Esc>")
+        nv.keys("ggwvee")
+        save(nv, "visual.svg", "Visual mode: v + motions, selection drawn by extmarks, d/y/c act on the range")
+        nv.keys("<Esc>ggVj")
+        nv.keys("<Esc>3jo")
+        save(nv, "insert.svg", "Insert mode is a flag in our state machine; the host stays in Normal mode")
+        nv.keys("<Esc>")
+        nv.keys(":set tabstop=4 | bogus")
+        save(nv, "cmdline.svg", "Command-line mode: footer shows the :cmdline being typed")
+        nv.keys("<CR>")
+        save(nv, "error.svg", "Errors are reported inside the editor that caused them (E492 / E518 style)")
+    finally:
+        nv.close()
+        shutil.rmtree(proj, ignore_errors=True)
+
+
+def broken_child_shot():
+    nv, proj = boot()
+    try:
+        with open(os.path.join(proj, "configs/b/init.lua"), "w") as f:
+            f.write('vim.opt.number = false\nvim.keymap.set("n", "Q", function(\n')
+        nv.keys("<Space>n")
+        save(nv, "broken-config.svg", "A broken child config: error shown in B's footer; B and A keep working")
+        nv.keys("ihi from B, still alive<Esc>")
+        nv.keys(":parent<CR>Q")
+        save(nv, "broken-config-parent.svg", "Back in A: untouched, its own Q mapping still works")
+    finally:
+        nv.close()
+        shutil.rmtree(proj, ignore_errors=True)
+
+
 def main():
+    modes_shots()
+    broken_child_shot()
     nv, proj = boot()
     try:
         nv.keys("jjA <Esc>")

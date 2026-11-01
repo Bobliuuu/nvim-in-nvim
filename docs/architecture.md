@@ -1,5 +1,9 @@
 # Architecture
 
+<div align="center"><img src="img/architecture.svg" alt="Architecture" width="900"></div>
+
+Text version of the same picture:
+
 ```
  terminal bytes
       │
@@ -27,6 +31,9 @@
 ```
 
 ## One keypress, end to end
+
+<div align="center"><img src="img/keypress-flow.svg" alt="Keypress flow" width="900"></div>
+
 1. The terminal sends bytes; Neovim decodes them into a key and calls our `on_key` callback.
 2. `input.lua` normalises the key (`keytrans` → canonical `<Esc>`, `<C-r>`, `é`), checks the emergency sequences, and calls
    `Instances.focused:feed(key)`. The callback returns `""`, so Neovim drops the key.
@@ -56,6 +63,9 @@ anywhere (the only depth-dependent things are *data*: the letter label and borde
 other float. Closing an editor closes its subtree first, wipes their buffers, and focuses the parent.
 
 ## Configuration runtime
+
+<div align="center"><img src="img/config-scopes.svg" alt="Config scopes" width="900"></div>
+
 ```lua
 local fn = load(src, "@configs/c/init.lua", "t", env)   -- env = { vim = <virtual vim>, string=..., math=..., ... }
 ```
@@ -67,6 +77,9 @@ local fn = load(src, "@configs/c/init.lua", "t", env)   -- env = { vim = <virtua
   The single exception is the one physical cursor shape (`guicursor`), which reflects the focused editor's mode.
 
 ### Reload = build a new scope, commit only on success
+
+<div align="center"><img src="img/reload-transaction.svg" alt="Reload transaction" width="900"></div>
+
 ```
 load_config(path):
     scope = Config.build(editor, path)   # runs the file against a *staging* scope; editor untouched

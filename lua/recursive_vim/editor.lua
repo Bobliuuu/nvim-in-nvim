@@ -73,6 +73,7 @@ end
 function Editor:load_config(path)
   local scope, err = Config.build(self, self:resolve(path))
   if not scope then
+    err = tostring(err):gsub(vim.pesc(Instances.root_dir) .. "/", "")   -- show project-relative paths
     self:report_error(("config %s: %s"):format(path, err))
     return false
   end
