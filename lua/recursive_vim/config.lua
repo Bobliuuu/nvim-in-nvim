@@ -12,6 +12,9 @@ M.DEFAULTS = {
   wrap = true,
   tabstop = 8,
   expandtab = false,
+  scrolloff = 0,
+  timeoutlen = 800,
+  signcolumn = "no",
 }
 
 -- a "scope" is everything one execution of a config file defined; replacing it = reload
@@ -80,7 +83,10 @@ local function make_vim(ed, scope)
       end
     end,
     nvim_buf_get_lines = function(_, s, e) return ed.buf:lines(s, e) end,
-    nvim_buf_set_lines = function(_, s, e, _, repl) ed:replace_lines(s, e, repl) end,
+    nvim_buf_set_lines = function(_, s, e, _, repl)
+      ed:replace_lines(s, e, repl)
+      ed:set_cursor(ed.row, ed.col)
+    end,
     nvim_get_current_line = function() return ed.buf:line(ed.row) end,
     nvim_win_get_cursor = function() return { ed.row + 1, ed.col } end,
     nvim_win_set_cursor = function(_, pos) ed:set_cursor(pos[1] - 1, pos[2]) end,
@@ -111,6 +117,11 @@ local function make_vim(ed, scope)
     depth = function() return ed.depth end,
     id = function() return ed.id end,
     name = function() return ed.name end,
+    scratch = function(lines)        -- replace the buffer without marking it modified or touching undo
+      ed.buf:init_lines(lines)
+      ed:set_cursor(0, 0)
+    end,
+    root = function() return require("recursive_vim.instances").root_dir end,
   }
 
   V.cmd = function(s) ed:exec(s) end

@@ -57,11 +57,32 @@ def to_svg(screen, title, rows=None):
     return "\n".join(out)
 
 
-def boot():
+def boot(config=None):
     proj = tempfile.mkdtemp(prefix="rvshot")
     for d in ("configs", "examples"): shutil.copytree(os.path.join(REPO, d), os.path.join(proj, d))
-    nv = Nvim(os.path.join(REPO, "init.lua"), env={"RECURSIVE_VIM_ROOT": proj}, rows=36, cols=110)
+    open(os.path.join(proj, "notes.txt"), "w").write("Shopping\nTODO: write the article\nmilk\neggs\n")
+    env = {"RECURSIVE_VIM_ROOT": proj}
+    if config: env["RECURSIVE_VIM_CONFIG"] = config
+    nv = Nvim(os.path.join(REPO, "init.lua"), env=env, rows=36, cols=110)
     return nv, proj
+
+
+def blog_shots():
+    nv, proj = boot("configs/blog/init.lua")
+    try:
+        save(nv, "blog-welcome.svg", "The blog's config, running inside the editor: start screen, relativenumber, signcolumn")
+        nv.keys(" e")
+        save(nv, "blog-explorer.svg", "<Space>e: the file tree is a child editor with its own config")
+        nv.keys(":4<CR><CR>")
+        nv.keys("gg]t")
+        nv.keys(" sv")
+        nv.keys(":e! configs/blog/init.lua<CR>:12<CR>")
+        nv.keys(" sv")
+        nv.keys(" e")
+        save(nv, "blog-layers.svg", "Layers: editor → split layer (editing the blog config) → split layer → explorer")
+    finally:
+        nv.close()
+        shutil.rmtree(proj, ignore_errors=True)
 
 
 def save(nv, name, title):
@@ -109,6 +130,7 @@ def broken_child_shot():
 
 
 def main():
+    blog_shots()
     modes_shots()
     broken_child_shot()
     nv, proj = boot()

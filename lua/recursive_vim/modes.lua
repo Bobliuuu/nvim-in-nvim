@@ -9,7 +9,7 @@ local M = {}
 
 local ALIAS = {
   ["<Left>"] = "h", ["<Right>"] = "l", ["<Up>"] = "k", ["<Down>"] = "j", ["<Home>"] = "0", ["<End>"] = "$",
-  ["<BS>"] = "h", [" "] = "l", ["<C-h>"] = "h",
+  ["<BS>"] = "h", [" "] = "l", ["<C-h>"] = "h", ["<NL>"] = "j",
 }
 
 -- commands that are just other keys in disguise (composition in action)

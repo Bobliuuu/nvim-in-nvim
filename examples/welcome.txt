@@ -1,0 +1,16 @@
+   _   __                _             _       _   __                _
+  / | / /__  ____ _   __(_)___ ___    (_)___  / | / /__  ____ _   __(_)___ ___
+ /  |/ / _ \/ __ \ | / / / __ `__ \  / / __ \/  |/ / _ \/ __ \ | / / / __ `__ \
+/ /|  /  __/ /_/ / |/ / / / / / / / / / / / / /|  /  __/ /_/ / |/ / / / / / / /
+/_/ |_/\___/\____/|___/_/_/ /_/ /_/ /_/_/ /_/_/ |_/\___/\____/|___/_/_/ /_/ /_/
+
+        "Neovim isn't actually that scary", ported into a layered Neovim
+
+  <Space>e   file explorer (a child editor layer)     <Space>ff  same, from anywhere
+  <Space>sv  new layer running this same config        <Space>sc  close this layer
+  <C-k>      focus the layer above   <C-j>  focus the layer below
+  <Tab>      next buffer             <S-Tab> previous buffer
+  <Space>lf  format (strip trailing whitespace)        ]t         next TODO
+  <Space>nm  message history                           <Space>w   save
+
+  TODO: edit this file, press <Esc>, and it autosaves (InsertLeave), like the post's config.

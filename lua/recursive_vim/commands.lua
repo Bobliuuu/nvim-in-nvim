@@ -3,7 +3,7 @@ local Config = require("recursive_vim.config")
 local M = {}
 
 local ALIAS = {
-  w = "write", write = "write", q = "quit", quit = "quit", wq = "wq", x = "wq", xit = "wq",
+  w = "write", write = "write", update = "update", up = "update", q = "quit", quit = "quit", wq = "wq", x = "wq", xit = "wq",
   e = "edit", edit = "edit", se = "set", set = "set", so = "source", source = "source", lua = "lua",
   reload = "reload", spawn = "spawn", close = "close", parent = "parent", child = "child", echo = "echo",
   noh = "noh", ls = "ls", messages = "messages", bn = "bnext", bnext = "bnext", bp = "bprev", bprev = "bprev",
@@ -11,6 +11,7 @@ local ALIAS = {
 
 local H = {}
 function H.write(ed, args) ed:save(args ~= "" and args or nil) end
+function H.update(ed) if ed.buf.path and ed.buf:is_dirty() then ed:save() end end
 function H.quit(ed, _, bang) ed:quit(bang) end
 function H.wq(ed, args, bang) if ed:save(args ~= "" and args or nil) then ed:quit(bang) end end
 function H.edit(ed, args, bang) ed:edit(args ~= "" and args or ed.buf.path, bang) end

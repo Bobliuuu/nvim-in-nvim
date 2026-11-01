@@ -37,6 +37,7 @@ function Editor.new(o)
   self.cfg = Config.default_scope(self)
   self.config_path = o.config
   self:_add_buf(Buf.new(self, o.file and self:resolve(o.file) or nil))
+  if o.lines then self.buf:init_lines(o.lines) end   -- pre-filled, not dirty (e.g. the file-explorer layer)
   Instances.register(self)
   if self.parent then table.insert(self.parent.children, self) end
   render.open(self)
@@ -44,6 +45,7 @@ function Editor.new(o)
   if o.config then self:load_config(o.config) end
   Instances.focus(self)
   self:fire("EditorSpawn")
+  render.refresh(self)
   return self
 end
 
@@ -132,8 +134,6 @@ function Editor:recover()
 end
 
 -- input ------------------------------------------------------------------
-Editor.timeoutlen = 800   -- ms a pending mapping prefix waits for its next key
-
 function Editor:_cancel_timer()
   if self.timer then
     self.timer:stop()
@@ -197,7 +197,7 @@ function Editor:_resolve_seq(force)
         local ok, err = pcall(self._resolve_seq, self, true)
         if not ok then self:report_error(err); self:recover() end
         render.refresh(self)
-      end, Editor.timeoutlen)
+      end, self.opts.timeoutlen)
       return
     end
     -- no match for the whole sequence: run the longest mapped prefix, else the first key literally

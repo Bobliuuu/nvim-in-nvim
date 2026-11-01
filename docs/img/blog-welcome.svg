@@ -1,0 +1,312 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 956 692" width="956" height="692" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14">
+<rect width="100%" height="100%" rx="10" fill="#1a1b26"/>
+<circle cx="22" cy="18" r="6" fill="#f7768e"/><circle cx="42" cy="18" r="6" fill="#e0af68"/><circle cx="62" cy="18" r="6" fill="#9ece6a"/>
+<text x="478" y="22" text-anchor="middle" fill="#565f89" font-size="12">The blog&#x27;s config, running inside the editor: start screen, relativenumber, signcolumn</text>
+<rect x="16.0" y="46.0" width="353.3" height="18.5" fill="#14161b"/>
+<rect x="368.8" y="46.0" width="218.9" height="18.5" fill="#7aa2f7"/>
+<rect x="587.2" y="46.0" width="353.3" height="18.5" fill="#14161b"/>
+<text x="16.0" y="59.0" fill="#7aa2f7" textLength="352.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">╭─────────────────────────────────────────</text>
+<text x="377.2" y="59.0" fill="#1a1b26" font-weight="bold" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">A</text>
+<text x="394.0" y="59.0" fill="#1a1b26" font-weight="bold" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">·</text>
+<text x="410.8" y="59.0" fill="#1a1b26" font-weight="bold" textLength="168.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">examples/welcome.txt</text>
+<text x="587.2" y="59.0" fill="#7aa2f7" textLength="352.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">─────────────────────────────────────────╮</text>
+<rect x="16.0" y="64.0" width="8.9" height="18.5" fill="#14161b"/>
+<rect x="24.4" y="64.0" width="67.7" height="18.5" fill="#7aa2f7"/>
+<rect x="91.6" y="64.0" width="840.5" height="18.5" fill="#24283b"/>
+<rect x="931.6" y="64.0" width="8.9" height="18.5" fill="#14161b"/>
+<text x="16.0" y="77.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="32.8" y="77.0" fill="#1a1b26" font-weight="bold" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">NORMAL</text>
+<text x="100.0" y="77.0" fill="#c0caf5" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">#1</text>
+<text x="125.2" y="77.0" fill="#c0caf5" textLength="168.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">examples/welcome.txt</text>
+<text x="898.0" y="77.0" fill="#c0caf5" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">1:1</text>
+<text x="931.6" y="77.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="82.0" width="59.3" height="18.5" fill="#14161b"/>
+<rect x="74.8" y="82.0" width="857.3" height="18.5" fill="#2c2e33"/>
+<rect x="931.6" y="82.0" width="8.9" height="18.5" fill="#14161b"/>
+<text x="16.0" y="95.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="41.2" y="95.0" fill="#e0e2ea" font-weight="bold" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">1</text>
+<text x="100.0" y="95.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="133.6" y="95.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="284.8" y="95.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="402.4" y="95.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="469.6" y="95.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="503.2" y="95.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="654.4" y="95.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="931.6" y="95.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="100.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="113.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="113.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">1</text>
+<text x="91.6" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="108.4" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|</text>
+<text x="125.2" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="142.0" y="113.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/__</text>
+<text x="184.0" y="113.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">____</text>
+<text x="226.0" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="259.6" y="113.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__(_)___</text>
+<text x="335.2" y="113.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">___</text>
+<text x="394.0" y="113.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">(_)___</text>
+<text x="461.2" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="478.0" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|</text>
+<text x="494.8" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="511.6" y="113.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/__</text>
+<text x="553.6" y="113.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">____</text>
+<text x="595.6" y="113.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="629.2" y="113.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__(_)___</text>
+<text x="704.8" y="113.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">___</text>
+<text x="931.6" y="113.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="118.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="131.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="131.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">2</text>
+<text x="83.2" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="108.4" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|/</text>
+<text x="133.6" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="150.4" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="167.2" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\/</text>
+<text x="192.4" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="217.6" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\</text>
+<text x="234.4" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|</text>
+<text x="251.2" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="268.0" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="284.8" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="301.6" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="326.8" y="131.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">`__</text>
+<text x="360.4" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\</text>
+<text x="385.6" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="402.4" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="419.2" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="444.4" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\/</text>
+<text x="478.0" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|/</text>
+<text x="503.2" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="520.0" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">_</text>
+<text x="536.8" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\/</text>
+<text x="562.0" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="587.2" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\</text>
+<text x="604.0" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|</text>
+<text x="620.8" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="637.6" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="654.4" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="671.2" y="131.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__</text>
+<text x="696.4" y="131.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">`__</text>
+<text x="730.0" y="131.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">\</text>
+<text x="931.6" y="131.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="136.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="149.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="149.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">3</text>
+<text x="74.8" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="91.6" y="149.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/|</text>
+<text x="125.2" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="150.4" y="149.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__/</text>
+<text x="184.0" y="149.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="217.6" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="234.4" y="149.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|/</text>
+<text x="259.6" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="276.4" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="293.2" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="310.0" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="326.8" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="343.6" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="360.4" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="377.2" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="394.0" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="410.8" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="427.6" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="444.4" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="461.2" y="149.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/|</text>
+<text x="494.8" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="520.0" y="149.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">__/</text>
+<text x="553.6" y="149.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="587.2" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="604.0" y="149.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|/</text>
+<text x="629.2" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="646.0" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="662.8" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="679.6" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="696.4" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="713.2" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="730.0" y="149.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/</text>
+<text x="931.6" y="149.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="154.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="167.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="167.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">4</text>
+<text x="74.8" y="167.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="108.4" y="167.0" fill="#e0e2ea" textLength="193.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|_/\___/\____/|___/_/_/</text>
+<text x="310.0" y="167.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="343.6" y="167.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="377.2" y="167.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/_/</text>
+<text x="427.6" y="167.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/_/</text>
+<text x="478.0" y="167.0" fill="#e0e2ea" textLength="193.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">|_/\___/\____/|___/_/_/</text>
+<text x="679.6" y="167.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="713.2" y="167.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">/_/</text>
+<text x="931.6" y="167.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="172.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="185.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="185.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">5</text>
+<text x="931.6" y="185.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="190.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="203.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="203.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">6</text>
+<text x="142.0" y="203.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&quot;Neovim</text>
+<text x="209.2" y="203.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">isn&#x27;t</text>
+<text x="259.6" y="203.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">actually</text>
+<text x="335.2" y="203.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">that</text>
+<text x="377.2" y="203.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">scary&quot;,</text>
+<text x="444.4" y="203.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">ported</text>
+<text x="503.2" y="203.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">into</text>
+<text x="545.2" y="203.0" fill="#e0e2ea" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">a</text>
+<text x="562.0" y="203.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">layered</text>
+<text x="629.2" y="203.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">Neovim</text>
+<text x="931.6" y="203.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="208.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="221.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="221.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">7</text>
+<text x="931.6" y="221.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="226.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="239.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="239.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">8</text>
+<text x="91.6" y="239.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;e</text>
+<text x="184.0" y="239.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">file</text>
+<text x="226.0" y="239.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">explorer</text>
+<text x="301.6" y="239.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">(a</text>
+<text x="326.8" y="239.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">child</text>
+<text x="377.2" y="239.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">editor</text>
+<text x="436.0" y="239.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">layer)</text>
+<text x="528.4" y="239.0" fill="#e0e2ea" textLength="75.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;ff</text>
+<text x="620.8" y="239.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">same,</text>
+<text x="671.2" y="239.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">from</text>
+<text x="713.2" y="239.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">anywhere</text>
+<text x="931.6" y="239.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="244.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="257.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="58.0" y="257.0" fill="#4f5258" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">9</text>
+<text x="91.6" y="257.0" fill="#e0e2ea" textLength="75.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;sv</text>
+<text x="184.0" y="257.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">new</text>
+<text x="217.6" y="257.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">layer</text>
+<text x="268.0" y="257.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">running</text>
+<text x="335.2" y="257.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">this</text>
+<text x="377.2" y="257.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">same</text>
+<text x="419.2" y="257.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">config</text>
+<text x="536.8" y="257.0" fill="#e0e2ea" textLength="75.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;sc</text>
+<text x="629.2" y="257.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">close</text>
+<text x="679.6" y="257.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">this</text>
+<text x="721.6" y="257.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">layer</text>
+<text x="931.6" y="257.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="262.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="275.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="49.6" y="275.0" fill="#4f5258" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">10</text>
+<text x="91.6" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;C-k&gt;</text>
+<text x="184.0" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">focus</text>
+<text x="234.4" y="275.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">the</text>
+<text x="268.0" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">layer</text>
+<text x="318.4" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">above</text>
+<text x="385.6" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;C-j&gt;</text>
+<text x="444.4" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">focus</text>
+<text x="494.8" y="275.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">the</text>
+<text x="528.4" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">layer</text>
+<text x="578.8" y="275.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">below</text>
+<text x="931.6" y="275.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="280.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="293.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="49.6" y="293.0" fill="#4f5258" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">11</text>
+<text x="91.6" y="293.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Tab&gt;</text>
+<text x="184.0" y="293.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">next</text>
+<text x="226.0" y="293.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">buffer</text>
+<text x="385.6" y="293.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;S-Tab&gt;</text>
+<text x="452.8" y="293.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">previous</text>
+<text x="528.4" y="293.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">buffer</text>
+<text x="931.6" y="293.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="298.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="311.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="49.6" y="311.0" fill="#4f5258" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">12</text>
+<text x="91.6" y="311.0" fill="#e0e2ea" textLength="75.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;lf</text>
+<text x="184.0" y="311.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">format</text>
+<text x="242.8" y="311.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">(strip</text>
+<text x="301.6" y="311.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">trailing</text>
+<text x="377.2" y="311.0" fill="#e0e2ea" textLength="92.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">whitespace)</text>
+<text x="536.8" y="311.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">]t</text>
+<text x="629.2" y="311.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">next</text>
+<text x="671.2" y="311.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">TODO</text>
+<text x="931.6" y="311.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="316.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="329.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="49.6" y="329.0" fill="#4f5258" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">13</text>
+<text x="91.6" y="329.0" fill="#e0e2ea" textLength="75.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;nm</text>
+<text x="184.0" y="329.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">message</text>
+<text x="251.2" y="329.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">history</text>
+<text x="536.8" y="329.0" fill="#e0e2ea" textLength="67.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Space&gt;w</text>
+<text x="629.2" y="329.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">save</text>
+<text x="931.6" y="329.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="334.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="347.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="49.6" y="347.0" fill="#4f5258" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">14</text>
+<text x="931.6" y="347.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="352.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="365.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="49.6" y="365.0" fill="#4f5258" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">15</text>
+<text x="91.6" y="365.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">TODO:</text>
+<text x="142.0" y="365.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">edit</text>
+<text x="184.0" y="365.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">this</text>
+<text x="226.0" y="365.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">file,</text>
+<text x="276.4" y="365.0" fill="#e0e2ea" textLength="42.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">press</text>
+<text x="326.8" y="365.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&lt;Esc&gt;,</text>
+<text x="385.6" y="365.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">and</text>
+<text x="419.2" y="365.0" fill="#e0e2ea" textLength="16.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">it</text>
+<text x="444.4" y="365.0" fill="#e0e2ea" textLength="75.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">autosaves</text>
+<text x="528.4" y="365.0" fill="#e0e2ea" textLength="117.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">(InsertLeave),</text>
+<text x="654.4" y="365.0" fill="#e0e2ea" textLength="33.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve">like</text>
+<text x="696.4" y="365.0" fill="#e0e2ea" textLength="25.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve">the</text>
+<text x="730.0" y="365.0" fill="#e0e2ea" textLength="50.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">post&#x27;s</text>
+<text x="788.8" y="365.0" fill="#e0e2ea" textLength="58.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">config.</text>
+<text x="931.6" y="365.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="370.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="383.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="383.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="388.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="401.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="401.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="406.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="419.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="419.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="424.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="437.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="437.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="442.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="455.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="455.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="460.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="473.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="473.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="478.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="491.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="491.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="496.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="509.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="509.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="514.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="527.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="527.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="532.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="545.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="545.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="550.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="563.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="563.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="568.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="581.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="581.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="586.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="599.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="599.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="604.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="617.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="617.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="622.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="635.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="635.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="640.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="653.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<text x="931.6" y="653.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">│</text>
+<rect x="16.0" y="658.0" width="924.5" height="18.5" fill="#14161b"/>
+<text x="16.0" y="671.0" fill="#7aa2f7" textLength="8.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve">╰</text>
+<text x="32.8" y="671.0" fill="#c0caf5" font-weight="bold" textLength="184.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve">&quot;examples/welcome.txt&quot;</text>
+<text x="226.0" y="671.0" fill="#7aa2f7" textLength="714.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve">────────────────────────────────────────────────────────────────────────────────────╯</text>
+</svg>

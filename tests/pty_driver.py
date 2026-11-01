@@ -6,7 +6,7 @@ import pyte
 KEYS = {
     "Esc": "\x1b", "CR": "\r", "BS": "\x7f", "Tab": "\t", "Space": " ", "lt": "<",
     "Up": "\x1b[A", "Down": "\x1b[B", "Right": "\x1b[C", "Left": "\x1b[D", "Del": "\x1b[3~", "Home": "\x1b[H", "End": "\x1b[F",
-    "C-c": "\x03", "C-r": "\x12", "C-\\": "\x1c", "F1": "\x1bOP",
+    "C-c": "\x03", "C-k": "\x0b", "C-j": "\x0a", "C-h": "\x08", "C-l": "\x0c", "S-Tab": "\x1b[Z", "C-r": "\x12", "C-\\": "\x1c", "F1": "\x1bOP",
 }
 
 

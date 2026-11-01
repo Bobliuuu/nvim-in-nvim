@@ -11,7 +11,7 @@ with its own `init.lua` configuration system, so the editor can edit the config 
 ![Lua](https://img.shields.io/badge/lua-only-bb9af7?style=flat-square&logo=lua&logoColor=white)
 ![plugins](https://img.shields.io/badge/third--party%20plugins-0-9ece6a?style=flat-square)
 ![processes](https://img.shields.io/badge/extra%20nvim%20processes-0-e0af68?style=flat-square)
-![tests](https://img.shields.io/badge/tests-59%20lua%20%C2%B7%2049%20e2e%20%C2%B7%2022%20research-f7768e?style=flat-square)
+![tests](https://img.shields.io/badge/tests-67%20lua%20%C2%B7%2066%20e2e%20%C2%B7%2022%20research-f7768e?style=flat-square)
 
 <img src="docs/img/nested.svg" alt="Four nested editors A→B→C→D in a single Neovim process" width="860">
 
@@ -98,6 +98,41 @@ nvim -u ./init.lua             # the real Neovim loads our init.lua, which boots
 `d` is an operator and `w` is a motion; the parser glues them, so `dw`, `d$`, `c2w`, `yj`, `dG`… all exist without being enumerated.
 Even `x` is just `dl`, and `D` is `d$`.
 
+## Bonus: someone else's real-world config, running *inside* the layered Neovim
+
+I took the setup from [“Neovim isn't actually that scary”](https://www.alvinayang.com/blogs/neovim-isnt-actually-that-scary) and ported it to
+[`configs/blog/`](configs/blog/init.lua). The original leans on ~40 plugins (lazy.nvim, Telescope, nvim-tree, LSP…), and this project has **zero plugins by
+design**, so the port keeps everything that Lua alone can express and turns the plugin features into **layers** (child editors):
+
+```bash
+RECURSIVE_VIM_CONFIG=configs/blog/init.lua nvim -u ./init.lua
+```
+
+| the post | here |
+|---|---|
+| `<Space>` leader · `relativenumber` · `tabstop=2` · `expandtab` · `nowrap` · `scrolloff=8` · `signcolumn` · `cursorline` · `timeoutlen=300` | same options, applied to *that editor's* window |
+| autosave on `InsertLeave` | `ModeChanged` handler → `:update` |
+| alpha.nvim start screen | `EditorSpawn` handler opens `examples/welcome.txt` (root only) |
+| nvim-tree / oil: `<leader>e` `<leader>o` · Telescope `<leader>ff` | a **child editor** with its own `configs/blog/explorer.lua`; `<CR>` opens the file in the layer above and closes itself |
+| `<leader>sv/sh/sc`, `<C-h/j/k/l>` splits | spawn / close a **layer running the same config**; `<C-k>`/`<C-j>` move between layers |
+| `Tab` / `S-Tab` buffer tabs | `:bnext` / `:bprev` |
+| `<leader>lf` LSP format · `]t` todo-comments | `:Format` (strip trailing whitespace) · search for `TODO` |
+| `<leader>nm` noice history | `:messages` |
+| LSP, treesitter-textobjects, git, telescope fuzzy, cmp, lualine themes | not possible without plugins |
+
+<table>
+<tr>
+<td width="50%"><img src="docs/img/blog-welcome.svg" alt="Blog config start screen"><br><sub>The post's options + start screen, in Editor A.</sub></td>
+<td width="50%"><img src="docs/img/blog-explorer.svg" alt="Explorer layer"><br><sub><code>&lt;Space&gt;e</code>: the file tree is a child editor.</sub></td>
+</tr>
+<tr>
+<td colspan="2"><img src="docs/img/blog-layers.svg" alt="Four layers"><br><sub>Editor → a layer editing the blog config itself (autosaving on <code>&lt;Esc&gt;</code>) → another layer → the explorer.
+The config is being edited from inside the config it describes, then <code>:reload</code>ed.</sub></td>
+</tr>
+</table>
+
+Real terminal test: [`tests/e2e_blog.py`](tests/e2e_blog.py) (17 checks: raw `<C-k>`/`<C-j>` bytes, autosave to disk from a real `<Esc>`, edit the config from a layer and reload it).
+
 ## Configuring an editor (it looks like configuring Neovim)
 
 ```lua
@@ -118,12 +153,12 @@ end, {})
 
 | area | API |
 |---|---|
-| options | `vim.opt` / `vim.o`: `number relativenumber cursorline wrap tabstop expandtab` |
+| options | `vim.opt` / `vim.o`: `number relativenumber cursorline wrap tabstop expandtab scrolloff signcolumn timeoutlen` |
 | globals | `vim.g.mapleader` |
 | mappings | `vim.keymap.set/del(mode, lhs, rhs\|fn)` for `n` `i` `v`, `<leader>`, multi-key, pending prefix with timeout |
 | commands | `vim.api.nvim_create_user_command`, `vim.cmd("…")` |
 | events | `vim.api.nvim_create_autocmd` for `ModeChanged BufWritePost ConfigLoaded EditorSpawn` |
-| editor | `vim.editor.echo spawn insert_text move_* motion feed exec edit save reload_config focus_parent close depth …` |
+| editor | `vim.editor.echo spawn insert_text scratch move_* motion feed exec edit save reload_config focus_parent close root depth …` |
 | modules | `require("x")` resolves next to the config file |
 
 **Reload is transactional**: the file runs against a *staging* scope; only if it finishes without error does it replace the editor's mappings,
@@ -241,6 +276,7 @@ init.lua                 nvim -u ./init.lua  → boots Editor A
 lua/recursive_vim/       the editor: input · instances · editor · modes · motions · operators ·
                          registers · buffer · commands · config · render · text · keys
 configs/{a,b,c,d}/       the per-level init.lua files used by the demo/tests
+configs/blog/            port of a real-world config (explorer layer, autosave, layers)
 tests/                   lua specs + pty end-to-end + run.sh
 experiments/             Phase-0 input interception research (reproducible)
 tools/                   makes the README screenshots from a real pty session

@@ -75,7 +75,7 @@ end
 
 function M.apply_options(ed)
   if not (ed.win and api.nvim_win_is_valid(ed.win)) then return end
-  for _, k in ipairs({ "number", "relativenumber", "cursorline", "wrap" }) do
+  for _, k in ipairs({ "number", "relativenumber", "cursorline", "wrap", "scrolloff", "signcolumn" }) do
     api.nvim_set_option_value(k, ed.opts[k], { win = ed.win })
   end
   for _, b in ipairs(ed.buffers) do

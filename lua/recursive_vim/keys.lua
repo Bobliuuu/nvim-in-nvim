@@ -13,7 +13,11 @@ local function special(name)
   local low = inner:lower()
   if NAMES[low] then return NAMES[low] end
   local mod, ch = inner:match("^[Cc]%-(.+)$")
-  if mod then return "<C-" .. mod:lower() .. ">" end
+  if mod then
+    local l = mod:lower()
+    -- terminals cannot tell these apart from the plain keys
+    return ({ j = "<NL>", m = "<CR>", i = "<Tab>", ["["] = "<Esc>" })[l] or ("<C-" .. l .. ">")
+  end
   local m2 = inner:match("^[Mm]%-(.+)$")
   if m2 then return "<M-" .. m2 .. ">" end
   if low:match("^f%d+$") then return "<F" .. low:sub(2) .. ">" end

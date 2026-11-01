@@ -38,6 +38,11 @@ function Buf.new(owner, path)
   return b
 end
 
+function Buf:init_lines(lines)
+  api.nvim_buf_set_lines(self.bufnr, 0, -1, false, lines)
+  self.saved = table.concat(self:lines(), "\n")
+end
+
 function Buf:guard(ed)
   if ed ~= self.owner then
     error(("buffer #%d is owned by editor #%d, editor #%s may not modify it"):format(

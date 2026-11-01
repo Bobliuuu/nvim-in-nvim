@@ -159,14 +159,10 @@ test("config: :source and :lua run in the editor's own environment", function()
 end)
 
 test("config: a pending mapping prefix times out (like 'timeoutlen') and falls back to the builtin", function()
-  local Editor = require("recursive_vim.editor")
-  local old = Editor.timeoutlen
-  Editor.timeoutlen = 30
-  local ed = with_config('vim.g.mapleader = " "\nvim.keymap.set("n", "<leader>n", function() vim.editor.echo("n!") end)', "abc")
+  local ed = with_config('vim.opt.timeoutlen = 30\nvim.g.mapleader = " "\nvim.keymap.set("n", "<leader>n", function() vim.editor.echo("n!") end)', "abc")
   ed:type(" ")                       -- Space: prefix of <leader>n, waits
   eq(ed.col, 0); eq(#ed.mapseq, 1)
   H.ok(vim.wait(500, function() return #ed.mapseq == 0 end), "timer fired")
   eq(ed.col, 1, "Space fell back to its builtin (move right)")
   ed:type(" n"); eq(ed.message, "n!")
-  Editor.timeoutlen = old
 end)
