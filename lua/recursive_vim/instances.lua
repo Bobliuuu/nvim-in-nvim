@@ -38,6 +38,7 @@ function M.close(ed)
   if ed.closed then return end
   for i = #ed.children, 1, -1 do M.close(ed.children[i]) end
   ed.closed = true
+  ed:_cancel_timer()
   M.all[ed.id] = nil
   local parent = ed.parent
   if parent then

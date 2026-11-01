@@ -131,8 +131,19 @@ function Editor:recover()
 end
 
 -- input ------------------------------------------------------------------
+Editor.timeoutlen = 800   -- ms a pending mapping prefix waits for its next key
+
+function Editor:_cancel_timer()
+  if self.timer then
+    self.timer:stop()
+    if not self.timer:is_closing() then self.timer:close() end
+    self.timer = nil
+  end
+end
+
 function Editor:feed(key)
   if self.closed then return end
+  self:_cancel_timer()
   self.message = nil
   local ok, err = pcall(self._map_feed, self, key)
   if not ok then self:report_error(err); self:recover() end
@@ -168,16 +179,24 @@ function Editor:_flush_seq()
   for _, k in ipairs(seq) do self:_builtin(k) end
 end
 
-function Editor:_resolve_seq()
+-- force = the timeout fired: stop waiting for a longer mapping
+function Editor:_resolve_seq(force)
   while #self.mapseq > 0 do
     local mode = self.mode == "V" and "v" or self.mode
     local maps = self.cfg.maps[mode]
     local seq = self.mapseq
     local exact, longer = Config.lookup(maps, seq)
-    if exact and not longer then
+    if exact and (force or not longer) then
       self.mapseq = {}
       return self:_run_map(exact)
-    elseif longer then
+    elseif longer and not force then
+      self.timer = vim.defer_fn(function()
+        self.timer = nil
+        if self.closed or #self.mapseq == 0 then return end
+        local ok, err = pcall(self._resolve_seq, self, true)
+        if not ok then self:report_error(err); self:recover() end
+        render.refresh(self)
+      end, Editor.timeoutlen)
       return
     end
     -- no match for the whole sequence: run the longest mapped prefix, else the first key literally
@@ -465,6 +484,7 @@ function Editor:quit(force)
 end
 
 function Editor:close()
+  self:_cancel_timer()
   if not self.parent and #Instances.roots() <= 1 then return false end
   Instances.close(self)
   return true

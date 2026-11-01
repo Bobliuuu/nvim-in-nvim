@@ -1,0 +1,40 @@
+╭─────────────────────────────────────────────── A · examples/hello.txt ───────────────────────────────────────────────╮
+│ NORMAL  #1 examples/hello.txt                                                                                   2:36 │
+│  1 Hello from Editor A.                                                                                              │
+│  2 This text is edited by a Lua editor,!                                                                             │
+│  3 running inside Neovim.                                                                                            │
+│  4                                                                                                                   │
+│  5 Try: <Space>n  to spawn a nested editor.                                                                          │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+│                                                                                                                      │
+╰ depth 0 · 0 children ────────────────────────────────────────────────────────────────────────────────────────────────╯
+E1568: Terminal did not respond to DSR request for 'background' color. Startup may be slower. :help 'ttyfast'
