@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1550 408" width="1550" height="408" role="img" aria-label="One input hook, many logical editors">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a98ad"/></marker></defs>
+<rect width="1550" height="408" rx="16" fill="#0b0f17"/>
+<text x="40" y="42" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="22" fill="#e6edf6">One input hook, many logical editors</text>
+<polyline points="310,132 375,132 375,132 440,132" fill="none" stroke="#8a98ad" stroke-width="2.2" marker-end="url(#ah)"/>
+<polyline points="710,132 775,132 775,132 840,132" fill="none" stroke="#8a98ad" stroke-width="2.2" marker-end="url(#ah)"/>
+<polyline points="975,184 975,264" fill="none" stroke="#8a98ad" stroke-width="2.2" marker-end="url(#ah)"/>
+<polyline points="1110,316 1175,316 1175,316 1240,316" fill="none" stroke="#8a98ad" stroke-width="2.2" marker-end="url(#ah)"/>
+<rect x="40" y="80" width="270" height="104" rx="12" fill="#131a26" stroke="#9ece6a" stroke-width="2"/>
+<text x="175.0" y="118" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="19" fill="#e6edf6">Key arrives</text>
+<text x="175.0" y="142" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">vim.on_key returns '' so native</text>
+<text x="175.0" y="160" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">Vim never runs</text>
+<rect x="440" y="80" width="270" height="104" rx="12" fill="#131a26" stroke="#bb9af7" stroke-width="2"/>
+<text x="575.0" y="118" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="19" fill="#e6edf6">Router</text>
+<text x="575.0" y="142" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">Instances.focused, one pointer</text>
+<rect x="840" y="80" width="270" height="104" rx="12" fill="#131a26" stroke="#7aa2f7" stroke-width="2"/>
+<text x="975.0" y="118" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="19" fill="#e6edf6">Focused editor</text>
+<text x="975.0" y="142" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">modes, cursor, registers, undo,</text>
+<text x="975.0" y="160" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">buffers, config scope</text>
+<rect x="840" y="264" width="270" height="104" rx="12" fill="#131a26" stroke="#7aa2f7" stroke-width="2"/>
+<text x="975.0" y="302" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="19" fill="#e6edf6">Parser</text>
+<text x="975.0" y="326" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">operator + motion -&gt; range</text>
+<rect x="1240" y="264" width="270" height="104" rx="12" fill="#131a26" stroke="#e0af68" stroke-width="2"/>
+<text x="1375.0" y="302" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="19" fill="#e6edf6">render.lua</text>
+<text x="1375.0" y="326" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8a98ad">each editor is a float window</text>
+</svg>

@@ -1,0 +1,253 @@
+# python3 ~/video-readme-maker/vrm.py all README.spec.yml
+# numbers: tools/record_tests.py (runs every test layer -> results/tests.json) then tools/readme_data.py
+project:
+  name: nvim-in-nvim
+  emoji: "🪆"
+  tagline: "Neovim inside Neovim inside Neovim: a Vim-like editor in Lua that has its own init.lua and can edit the config of another editor"
+  repo: Bobliuuu/nvim-in-nvim
+hero:
+  title: nvim-in-nvim
+  subtitle: "four logical editors, one Neovim process, zero plugins"
+  chips: [Lua only, nested editors, own init.lua, tested in a real pty]
+theme: {accent: "#7aa2f7", accent2: "#bb9af7", accent3: "#e0af68", good: "#9ece6a"}
+readme_out: README.md
+assets_dir: assets
+badges:
+  - {label: neovim, message: "{{ n.nvim.text }}+", color: 7aa2f7, logo: neovim, link: "https://neovim.io"}
+  - {label: lua, message: "only", color: bb9af7, logo: lua}
+  - {label: third-party plugins, message: "0", color: 9ece6a}
+  - {label: tests, message: "{{ n.t_pass.text }}/{{ n.t_of.text }} pass", color: 9ece6a}
+  - {label: release, message: "v0.1.0", color: 7aa2f7, link: "https://github.com/Bobliuuu/nvim-in-nvim/releases/tag/v0.1.0"}
+  - {label: editor, message: "{{ n.lua_lines.text }} lines of Lua", color: e0af68}
+nav:
+  - {emoji: "🎬", label: Video, anchor: video}
+  - {emoji: "💡", label: The idea, anchor: idea}
+  - {emoji: "🚀", label: Try it, anchor: try}
+  - {emoji: "🧩", label: How it works, anchor: how-it-works}
+  - {emoji: "✅", label: Tests, anchor: tests}
+  - {emoji: "🖼️", label: Gallery, anchor: gallery}
+  - {emoji: "⚠️", label: Limitations, anchor: caveats}
+  - {emoji: "🗺️", label: Repo map, anchor: repo-map}
+
+numbers:
+  nvim: {file: results/derived/readme_data.json, path: nvim_mm, fmt: "{:.2f}"}
+  lua_lines: {file: results/derived/readme_data.json, path: editor_lua_lines, fmt: "{:,.0f}"}
+  lua_files: {file: results/derived/readme_data.json, path: editor_lua_files}
+  t_pass: {file: results/derived/readme_data.json, path: tests_all.passed}
+  t_of: {file: results/derived/readme_data.json, path: tests_all.of}
+  specs: {file: results/derived/readme_data.json, path: lua_specs.passed}
+  e2e: {file: results/derived/readme_data.json, path: e2e_total.passed}
+  e2e_of: {file: results/derived/readme_data.json, path: e2e_total.of}
+  research: {file: results/derived/readme_data.json, path: research.passed}
+
+intro: |
+  <a id="video"></a>
+  A Vim-like editor written in about {{ n.lua_lines.text }} lines of Lua ({{ n.lua_files.text }} modules), running **on top of** Neovim using nothing but its public API, with its own `init.lua`
+  configuration system. The editors are *logical* editors, not extra processes: each has its own modes, cursor, registers, undo, buffers, mappings and
+  **its own Lua environment in which `vim` means "this editor"**. So an editor built from Neovim configuration can edit the configuration of another editor built from Neovim configuration.
+
+  <p align="center"><img src="docs/img/nested.svg" alt="Four nested editors A, B, C, D in a single Neovim process" width="860"></p>
+
+video:
+  url: ""
+  caption: "Explainer video (voice-over and captions): the idea, the architecture, the tests, the limits"
+  mp4: video/nvim_in_nvim_explainer.mp4
+  gif: video/preview.gif
+  srt: video/nvim_in_nvim_explainer.srt
+  poster: video/poster.png
+  out_dir: video/.render
+  fps: 24
+  max_mb: 22
+  render_crf: 18
+  concurrency: 4
+  music: true
+  voice: {engine: openai, voice: alloy, model: gpt-4o-mini-tts, tempo: 1.2}
+  scenes:
+    - type: title
+      title: nvim-in-nvim
+      subtitle: Neovim inside Neovim inside Neovim
+      chips: [Lua only, zero plugins, own init.lua]
+      say: "nvim in nvim: Neovim inside Neovim inside Neovim. A Vim like editor written in Lua, that runs on top of Neovim, and has its own configuration system."
+    - type: problem
+      heading: "The question"
+      bullets:
+        - "Can Neovim's config system express a smaller Neovim?"
+        - "One that has its own config system, and can edit another one's config?"
+        - "Using only the public API, no plugins, no extra processes"
+      say: "Can Neovim's configuration system express a smaller Neovim, one that has a configuration system of its own, and can edit the configuration of another editor like itself? And can it do that using only the public A P I, no plugins and no extra processes?"
+    - type: code
+      heading: "Four editors, one process"
+      code: |
+        REAL NEOVIM  loads our init.lua
+          EDITOR A  configs/a/init.lua
+            EDITOR B  configs/b/init.lua
+              EDITOR C  configs/c/init.lua
+                EDITOR D  configs/d/init.lua
+      say: "Real Neovim loads one init dot lua, which boots editor A. A spawns B, B spawns C, and C spawns D. They are not Neovim processes. Each is a logical editor implemented in Lua, with its own modes, registers, undo history, key mappings, and its own Lua environment where the word vim means this editor."
+    - type: architecture
+      diagram: flow
+      heading: "How a key travels"
+      say: "Neovim gives us three primitives: a key arriving, a buffer, and a float window. One on key hook swallows every key and routes it to the focused editor. Each editor holds its own state, and one render module draws each editor as a float. Because a child editor needs the same three primitives, an editor can host another editor."
+    - type: stat
+      number: lua_lines
+      kicker: "lines of Lua in {{ n.lua_files.text }} modules"
+      label: "lines"
+      sub: "zero third-party plugins, zero extra Neovim processes"
+      say: "The whole editor is {{ n.lua_lines.numtext }} lines of Lua across {{ n.lua_files.numtext }} modules, with no third party plugins."
+    - type: chart
+      chart: modules
+      say: "Most of the logic sits in the editor core, the config loader, the mode state machine, motions and rendering. Operators and motions know nothing about each other, so adding one motion gives you delete, change, yank and visual support for it."
+    - type: table
+      table: tests_tbl
+      heading: "Tests"
+      say: "The tests have four layers. {{ n.specs.numtext }} Lua specs run in headless Neovim. {{ n.e2e.numtext }} of {{ n.e2e_of.numtext }} end to end checks drive the real terminal U I in a pseudo terminal with raw bytes, including the full story where editor B edits and saves C's config, and C reloads it. And {{ n.research.numtext }} input research assertions back the design. All {{ n.t_pass.numtext }} pass."
+    - type: caveats
+      heading: "Honest limitations"
+      bullets:
+        - "Configs are trusted code; isolation covers names and state, not capabilities"
+        - "Not Vim: no regex search, folds, marks, macros or :s"
+        - "Undo is linear whole-buffer snapshots"
+        - "One physical terminal, so cursor shape is global"
+      say: "The limits. Configs are trusted code: a private Lua environment isolates names and state, not capabilities. This is not full Vim: there is no regex search, folds, marks or macros, and undo is a linear snapshot. There is one physical terminal, so cursor shape is global."
+    - type: end
+      title: nvim-in-nvim
+      subtitle: "Try it: nvim -u ./init.lua"
+      say: "Clone the repo, and run nvim dash u dot slash init dot lua to try it."
+
+tables:
+  - id: tests_tbl
+    title: "Test layers (results/tests.json, produced by tools/record_tests.py)"
+    file: results/derived/readme_data.json
+    rows_path: tests_rows
+    columns:
+      - {key: layer, title: Layer}
+      - {key: passed, title: Passed, align: right}
+      - {key: of, title: "Of", align: right}
+charts:
+  - id: modules
+    type: bar
+    title: "Lines of Lua per module"
+    subtitle: "lua/recursive_vim/*.lua"
+    better: lower
+    file: results/derived/readme_data.json
+    rows_path: modules
+    label: module
+    y: lines
+    fmt: "{:,.0f}"
+diagrams:
+  - id: flow
+    title: "One input hook, many logical editors"
+    nodes:
+      - {id: k, label: "Key arrives", sub: "vim.on_key returns '' so native Vim never runs", col: 0, row: 0, kind: io}
+      - {id: r, label: "Router", sub: "Instances.focused, one pointer", col: 1, row: 0, kind: accent}
+      - {id: e, label: "Focused editor", sub: "modes, cursor, registers, undo, buffers, config scope", col: 2, row: 0}
+      - {id: p, label: "Parser", sub: "operator + motion -> range", col: 2, row: 1}
+      - {id: d, label: "render.lua", sub: "each editor is a float window", col: 3, row: 1, kind: store}
+    edges:
+      - {from: k, to: r}
+      - {from: r, to: e}
+      - {from: e, to: p}
+      - {from: p, to: d}
+
+sections:
+  - title: The idea
+    emoji: "💡"
+    id: idea
+    body: |
+      ```text
+      REAL NEOVIM  ── loads our init.lua
+      └── EDITOR A   (Lua)   configs/a/init.lua   number on,  Q → "Editor A"
+          └── EDITOR B   (Lua)   configs/b/init.lua   number off, Q → "Editor B"
+              └── EDITOR C   (Lua)   configs/c/init.lua   number on,  Q → "Editor C"
+                  └── EDITOR D   (Lua)   configs/d/init.lua   relative numbers …
+      ```
+      The acceptance test runs automatically against a real terminal with raw bytes: **Editor B opens `configs/c/init.lua`, changes `"Editor C"` to `"Editor C was reconfigured"` using our own `/`, `i` and `:w`, then Editor C reloads and its `Q` mapping now says `Editor C was reconfigured`.**
+
+      <div align="center"><img src="docs/img/reconfigure.svg" alt="Editor B editing and saving Editor C's init.lua" width="860"></div>
+  - title: Try it
+    emoji: "🚀"
+    id: try
+    body: |
+      ```bash
+      brew install neovim            # needs 0.10+ (float footers); developed on 0.12.6
+      git clone https://github.com/Bobliuuu/nvim-in-nvim && cd nvim-in-nvim
+      nvim -u ./init.lua             # the real Neovim loads our init.lua, which boots Editor A
+      ```
+      | keys | what happens |
+      |---|---|
+      | `Q` | Editor A's own mapping: footer says `Editor A` |
+      | `<Space>n` | A's mapping spawns **Editor B** (new buffer, new config, `number` off) |
+      | `<Space>n` again | B spawns **C**, then **D** |
+      | `:parent` / `:child` | move focus up/down the tree |
+      | in B: `:e! configs/c/init.lua` | open C's config, edit it with our own commands, save with `:w` |
+      | `:child` then `:reload` then `Q` | C re-executes the saved file |
+      | `:close` / `:q!` in A | close this editor / quit the real Neovim |
+      | `<C-\><C-\>` | emergency: step aside, native Neovim takes over |
+
+      The port of a real-world config running in layers: `RECURSIVE_VIM_CONFIG=configs/blog/init.lua nvim -u ./init.lua` (see [the full README](docs/README_FULL.md)).
+  - title: How it works
+    emoji: "🧩"
+    id: how-it-works
+    body: |
+      1. **Stealing the keyboard.** `input.lua` registers the only `vim.on_key` hook; it returns `""` for every key, so Neovim's own machinery never runs. It also overrides `vim.paste` and reserves two emergency sequences.
+      2. **Routing.** The key goes to `Instances.focused`. Focus moves on `spawn`, `:parent`, `:child`, `:close`.
+      3. **Per-editor state.** Mode, cursor, registers, undo, buffers, mappings, options and children hang off the `Editor` object.
+      4. **Rendering.** `render.lua` is the only file that touches host windows; each editor is a float.
+
+      `d` is an operator and `w` is a motion; the parser glues them, so `dw`, `d$`, `c2w`, `yj`, `dG` all exist without being enumerated.
+    diagrams: [flow]
+    images:
+      - {src: docs/img/architecture.svg, alt: "Architecture diagram", width: "90%"}
+      - {src: docs/img/keypress-flow.svg, alt: "Life of a keypress", width: "90%"}
+    details:
+      - summary: "Reload is a transaction"
+        body: |
+          The config file runs against a *staging* scope; only if it finishes without error does it replace the editor's mappings, commands and options in one swap. A broken config reports its error in that editor, keeps the previous working config and never touches its parent.
+          <div align="center"><img src="docs/img/reload-transaction.svg" alt="Config reload transaction" width="90%"></div>
+      - summary: "Why configs cannot contaminate each other"
+        body: |
+          Each config is compiled with `load(src, name, "t", env)` where `env` is a whitelist of Lua libraries and **that editor's** virtual `vim`.
+          <div align="center"><img src="docs/img/config-scopes.svg" alt="Per-editor config scopes" width="90%"></div>
+  - title: Tests
+    emoji: "✅"
+    id: tests
+    body: "`tests/run.sh` runs every layer. The counts below were recorded by `tools/record_tests.py` on Neovim {{ n.nvim.text }}.x."
+    highlights:
+      - {label: "Lua specs", number: specs}
+      - {label: "E2E checks (pty)", number: e2e}
+      - {label: "Input research", number: research}
+    charts: [modules]
+    tables: [tests_tbl]
+  - title: Gallery
+    emoji: "🖼️"
+    id: gallery
+    body: |
+      Real screen captures, rendered from a pty running the actual editor.
+
+      <table>
+      <tr>
+      <td width="50%"><img src="docs/img/editor-a.svg" alt="Editor A"><br><sub><b>Editor A</b></sub></td>
+      <td width="50%"><img src="docs/img/visual.svg" alt="Visual mode"><br><sub><b>Visual mode</b> drawn by extmarks</sub></td>
+      </tr>
+      <tr>
+      <td><img src="docs/img/insert.svg" alt="Insert mode"><br><sub><b>Insert mode</b> is a flag in our state machine</sub></td>
+      <td><img src="docs/img/broken-config.svg" alt="Broken child config"><br><sub><b>Broken child config</b>: B shows the Lua error, still usable</sub></td>
+      </tr>
+      </table>
+
+caveats:
+  - "Configs are **trusted code**: a private Lua environment isolates names and state, not capabilities (`os` and `io` are available)."
+  - "Not Vim: no regex search, folds, marks, macros, `:s`/`:g`, jump list, completion or mouse. Undo is linear whole-buffer snapshots."
+  - "Insert counts (`3ix<Esc>`) are not implemented; a pending mapping prefix waits `timeoutlen` before falling back to the builtin."
+  - "One physical terminal, so cursor shape is global. If the hook ever wedges: `<C-\\><C-\\>`."
+repo_map:
+  - {path: init.lua, desc: "nvim -u ./init.lua boots Editor A"}
+  - {path: lua/recursive_vim/, desc: "the editor: input, instances, editor, modes, motions, operators, registers, buffer, commands, config, render, text, keys"}
+  - {path: configs/, desc: "per-level init.lua files (a, b, c, d) and a ported real-world config (blog)"}
+  - {path: tests/, desc: "Lua specs, pty end-to-end tests and run.sh"}
+  - {path: experiments/, desc: "phase-0 input interception research"}
+  - {path: tools/, desc: "screenshots/diagrams, record_tests.py and readme_data.py"}
+  - {path: docs/, desc: "architecture, input research, discoveries, README_FULL.md (the earlier long README)"}
+  - {path: README.spec.yml, desc: "spec for video-readme-maker"}
+  - {path: video/, desc: "explainer mp4, srt, poster, preview.gif (generated)"}
+footer: "Generated with video-readme-maker from README.spec.yml and results/."

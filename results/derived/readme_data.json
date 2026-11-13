@@ -1,0 +1,110 @@
+{
+ "lua_specs": {
+  "passed": 67,
+  "failed": 0
+ },
+ "e2e_pty": {
+  "passed": 49,
+  "of": 49
+ },
+ "e2e_blog": {
+  "passed": 17,
+  "of": 17
+ },
+ "research": {
+  "passed": 22,
+  "of": 22
+ },
+ "e2e_total": {
+  "passed": 66,
+  "of": 66
+ },
+ "editor_lua_lines": 1955,
+ "editor_lua_files": 14,
+ "nvim": "v0.12.6",
+ "nvim_mm": 0.12,
+ "modules": [
+  {
+   "module": "editor",
+   "lines": 523
+  },
+  {
+   "module": "modes",
+   "lines": 260
+  },
+  {
+   "module": "config",
+   "lines": 233
+  },
+  {
+   "module": "motions",
+   "lines": 186
+  },
+  {
+   "module": "render",
+   "lines": 167
+  },
+  {
+   "module": "buffer",
+   "lines": 112
+  },
+  {
+   "module": "commands",
+   "lines": 82
+  },
+  {
+   "module": "input",
+   "lines": 74
+  },
+  {
+   "module": "keys",
+   "lines": 70
+  },
+  {
+   "module": "operators",
+   "lines": 70
+  },
+  {
+   "module": "text",
+   "lines": 65
+  },
+  {
+   "module": "instances",
+   "lines": 56
+  },
+  {
+   "module": "init",
+   "lines": 39
+  },
+  {
+   "module": "registers",
+   "lines": 18
+  }
+ ],
+ "tests_rows": [
+  {
+   "layer": "Lua specs (headless nvim)",
+   "passed": 67,
+   "of": 67
+  },
+  {
+   "layer": "End-to-end (real TUI in a pty)",
+   "passed": 49,
+   "of": 49
+  },
+  {
+   "layer": "End-to-end (blog config layers)",
+   "passed": 17,
+   "of": 17
+  },
+  {
+   "layer": "Phase-0 input research",
+   "passed": 22,
+   "of": 22
+  }
+ ],
+ "tests_all": {
+  "passed": 155,
+  "of": 155
+ }
+}

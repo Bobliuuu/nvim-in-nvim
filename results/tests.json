@@ -1,0 +1,25 @@
+{
+ "lua_specs": {
+  "passed": 67,
+  "failed": 0
+ },
+ "e2e_pty": {
+  "passed": 49,
+  "of": 49
+ },
+ "e2e_blog": {
+  "passed": 17,
+  "of": 17
+ },
+ "research": {
+  "passed": 22,
+  "of": 22
+ },
+ "e2e_total": {
+  "passed": 66,
+  "of": 66
+ },
+ "editor_lua_lines": 1955,
+ "editor_lua_files": 14,
+ "nvim": "v0.12.6"
+}

@@ -1,0 +1,128 @@
+1
+00:00:00,400 --> 00:00:03,799
+nvim in nvim: Neovim inside Neovim inside Neovim.
+
+2
+00:00:03,799 --> 00:00:10,113
+A Vim like editor written in Lua, that runs on top of Neovim, and has its own configuration
+
+3
+00:00:10,113 --> 00:00:10,598
+system.
+
+4
+00:00:11,600 --> 00:00:17,116
+Can Neovim's configuration system express a smaller Neovim, one that has a configuration system
+
+5
+00:00:17,116 --> 00:00:21,355
+of its own, and can edit the configuration of another editor like itself?
+
+6
+00:00:21,355 --> 00:00:26,116
+And can it do that using only the public A P I, no plugins and no extra processes?
+
+7
+00:00:27,120 --> 00:00:30,750
+Real Neovim loads one init dot lua, which boots editor A.
+
+8
+00:00:30,750 --> 00:00:33,233
+A spawns B, B spawns C, and C spawns D.
+
+9
+00:00:33,233 --> 00:00:35,144
+They are not Neovim processes.
+
+10
+00:00:35,144 --> 00:00:41,066
+Each is a logical editor implemented in Lua, with its own modes, registers, undo history, key
+
+11
+00:00:41,066 --> 00:00:45,843
+mappings, and its own Lua environment where the word vim means this editor.
+
+12
+00:00:46,840 --> 00:00:51,167
+Neovim gives us three primitives: a key arriving, a buffer, and a float window.
+
+13
+00:00:51,167 --> 00:00:55,055
+One on key hook swallows every key and routes it to the focused editor.
+
+14
+00:00:55,055 --> 00:00:59,656
+Each editor holds its own state, and one render module draws each editor as a float.
+
+15
+00:00:59,656 --> 00:01:04,585
+Because a child editor needs the same three primitives, an editor can host another editor.
+
+16
+00:01:05,590 --> 00:01:12,028
+The whole editor is 1,955 lines of Lua across 14 modules, with no third party plugins.
+
+17
+00:01:13,030 --> 00:01:18,494
+Most of the logic sits in the editor core, the config loader, the mode state machine, motions
+
+18
+00:01:18,494 --> 00:01:19,316
+and rendering.
+
+19
+00:01:19,316 --> 00:01:24,604
+Operators and motions know nothing about each other, so adding one motion gives you delete
+
+20
+00:01:24,604 --> 00:01:26,895
+change, yank and visual support for it.
+
+21
+00:01:27,900 --> 00:01:29,752
+The tests have four layers.
+
+22
+00:01:29,752 --> 00:01:32,221
+67 Lua specs run in headless Neovim.
+
+23
+00:01:32,221 --> 00:01:38,393
+66 of 66 end to end checks drive the real terminal U I in a pseudo terminal with raw bytes
+
+24
+00:01:38,393 --> 00:01:44,222
+including the full story where editor B edits and saves C's config, and C reloads it.
+
+25
+00:01:44,222 --> 00:01:47,582
+And 22 input research assertions back the design.
+
+26
+00:01:47,582 --> 00:01:48,474
+All 155 pass.
+
+27
+00:01:49,470 --> 00:01:50,135
+The limits.
+
+28
+00:01:50,135 --> 00:01:55,881
+Configs are trusted code: a private Lua environment isolates names and state, not capabilities.
+
+29
+00:01:55,881 --> 00:02:01,445
+This is not full Vim: there is no regex search, folds, marks or macros, and undo is a linear
+
+30
+00:02:01,445 --> 00:02:01,989
+snapshot.
+
+31
+00:02:01,989 --> 00:02:05,497
+There is one physical terminal, so cursor shape is global.
+
+32
+00:02:06,500 --> 00:02:11,632
+Clone the repo, and run nvim dash u dot slash init dot lua to try it.
+
